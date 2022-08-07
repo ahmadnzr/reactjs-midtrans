@@ -1,0 +1,21 @@
+{
+  "name": "backend-keuportal",
+  "version": "1.0.0",
+  "description": "backend service for payment",
+  "main": "index.js",
+  "author": "Ahmad Nizar<ahmad.rpl001@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
