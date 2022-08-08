@@ -6,14 +6,15 @@
   "author": "Ahmad Nizar<ahmad.rpl001@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
