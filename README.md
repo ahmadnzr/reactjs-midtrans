@@ -1,6 +1,6 @@
-# React.js + Express + Midtrands
+# React.js + Express + Midtrands + Firebase
 
-Read the midtrans documentation:
+Read midtrans documentation:
 - [Testing Payment](https://docs.midtrans.com/en/snap/integration-guide?id=_3-creating-test-payment)
 - [Frontent Integration](https://snap-docs.midtrans.com/#frontend-integration)
 - [Backend Integration](https://snap-docs.midtrans.com/#backend-integration)
@@ -9,7 +9,7 @@ Read the midtrans documentation:
 
 - clone the repo
 - run the backend service:
-    - add your SERVER_KEY to .env
+    - configure your environment use `.env-template`
     - run these commands :
         ```bash
         cd server/ && 
@@ -17,7 +17,7 @@ Read the midtrans documentation:
         yarn devdev
         ```
 - run the client
-    - add your CLIENT_KEY to .env (optional)
+    - configure your environment use `.env-template`
     - run these commands:
         ```bash
         cd client/ &&
