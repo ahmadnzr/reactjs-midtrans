@@ -9,30 +9,41 @@ const Wrapper = ({ children }: Props) => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [user, setUser] = useState<any>()
+  const [loading, setLoading] = useState(false)
 
-  const onPressLogin = useCallback((e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCred) => {
-        console.log('OKJKKKK')
-        console.log(userCred.user)
-      })
-      .catch((error) => {
-        setPassword('')
-        console.log(error)
-      })
-  }, [])
+  const onPressLogin = useCallback(
+    (e: React.FormEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      setLoading(true)
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          setLoading(false)
+          console.log(userCred.user)
+        })
+        .catch((error) => {
+          setLoading(false)
+          console.log(error)
+        })
+    },
+    [email, password, auth],
+  )
 
   useEffect(() => {
+    setLoading(true)
     onAuthStateChanged(auth, (user) => {
+      setLoading(false)
       if (user) {
         setUser(user)
       }
     })
-  }, [])
+  }, [auth, user])
 
   if (user) {
     return <>{children}</>
+  }
+
+  if (loading) {
+    return <p>loading....</p>
   }
 
   return (
