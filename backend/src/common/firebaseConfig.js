@@ -1,8 +1,8 @@
-import admin, { ServiceAccount } from "firebase-admin";
+import admin from "firebase-admin";
 
 const { PROJECT_ID, PRIVATE_KEY, CLIENT_EMAIL } = process.env;
 
-const serviceAccount: ServiceAccount = {
+const serviceAccount = {
   projectId: PROJECT_ID,
   clientEmail: CLIENT_EMAIL,
   privateKey: PRIVATE_KEY,
