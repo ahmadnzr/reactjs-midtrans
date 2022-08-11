@@ -1,4 +1,5 @@
-import admin from "firebase-admin";
+const admin = require("firebase-admin");
+require('dotenv').config()
 
 const { PROJECT_ID, PRIVATE_KEY, CLIENT_EMAIL } = process.env;
 

@@ -1,5 +1,5 @@
-import { signOut } from 'firebase/auth'
-import React, { useCallback, useEffect } from 'react'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import React, { useCallback, useEffect, useState } from 'react'
 import ButtonPay from './ButtonPay'
 import { auth } from './config/firebase'
 import Wrapper from './Wrapper'
@@ -13,6 +13,7 @@ declare global {
 const CLIENT_KEY = process.env.REACT_APP_CLIENT_KEY
 
 const App = () => {
+  const [token, setToken] = useState('')
   useEffect(() => {
     const snapSrcUrl = 'https://app.sandbox.midtrans.com/snap/snap.js'
     const myMidtransClientKey = `${CLIENT_KEY}`
@@ -28,8 +29,23 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        user
+          .getIdToken()
+          .then((token) => setToken(token))
+          .catch(() => setToken(''))
+      }
+    })
+  }, [auth])
+
   const onPressPay = async () => {
-    const data = await fetch('http://127.0.0.1:8080/transaction')
+    const data = await fetch('http://127.0.0.1:8080/transaction', {
+      headers: {
+        'Authorization': 'Bearer '+token
+      }
+    })
     const res = await data.json()
     const snapToken = res.token
     window.snap.pay(snapToken, {

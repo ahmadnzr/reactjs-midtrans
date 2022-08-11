@@ -22,7 +22,8 @@ const authorize = asyncWrapper(async (req, res, next) => {
   try {
     const token = getToken(req.headers.authorization);
     if (!token) {
-      return res.fail(403, {
+      console.log("need login");
+      return res.status(403).json({
         name: "FORBIDDEN",
         message: "You are not authenticated!",
       });
@@ -31,7 +32,7 @@ const authorize = asyncWrapper(async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-    return res.fail(401, {
+    return res.status(401).json({
       name: "UNAUTHORIZED",
       message: "Token is not valid!",
     });
